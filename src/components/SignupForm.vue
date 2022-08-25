@@ -5,9 +5,18 @@
       <input type="email" v-model="email" required />
       <label>Password:</label>
       <input type="password" v-model="password" required />
+      <!-- 1)Create the dropdown with the desired options -->
+      <label>Role:</label>
+      <!-- 3) Apply v-model to select tag-->
+      <select v-model="role">
+        <option value="developer">Web Developer</option>
+        <option value="designer">Web Designer</option>
+      </select>
     </form>
     <p>Email: {{ email }}</p>
     <p>Password: {{ password }}</p>
+    <!-- 4) Optional: output the selected value in the dropdown -->
+    <p>Role: {{ role }}</p>
   </div>
 </template>
 <script>
@@ -16,6 +25,10 @@ export default {
     return {
       email: "",
       password: "",
+      /* 2) Crate the property role to store value selected in
+      dropdown. Add a dafault/initial value if desired. Here by 
+      dafault web designer will appear in the dropdown */
+      role: "designer",
     };
   },
 };
