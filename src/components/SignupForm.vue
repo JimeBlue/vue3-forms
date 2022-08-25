@@ -1,10 +1,9 @@
 <template>
   <form>
-    <label> Email</label>
+    <label>Email:</label>
     <input type="email" required />
   </form>
 </template>
-
 <script>
 export default {};
 </script>
