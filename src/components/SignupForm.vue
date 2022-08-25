@@ -2,14 +2,10 @@
   <div>
     <form>
       <label>Email:</label>
-      <!-- 1) Track value of email and password input
-      using data binding with the v-model directive -->
       <input type="email" v-model="email" required />
       <label>Password:</label>
       <input type="password" v-model="password" required />
     </form>
-    <!-- 3)Optional step: output values entered into
-    email and password inputs -->
     <p>Email: {{ email }}</p>
     <p>Password: {{ password }}</p>
   </div>
@@ -18,8 +14,6 @@
 export default {
   data() {
     return {
-      /* 2) Add the email and password properties to store
-        the value of those inputs */
       email: "",
       password: "",
     };
