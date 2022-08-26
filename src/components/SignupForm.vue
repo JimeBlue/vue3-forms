@@ -3,8 +3,6 @@
   <!-- (https://github.com/iamshaunjp/Vue-3-Firebase/blob/lesson-44/web-forms/src/App.vue) -->
 
   <div>
-    <!-- PROBLEM: add an text input field where the user can add
-    several skills -->
     <form>
       <label>Email:</label>
       <input type="email" v-model="email" required />
@@ -15,20 +13,8 @@
         <option value="developer">Web Developer</option>
         <option value="designer">Web Designer</option>
       </select>
-      <!-- 1) Create input field. Add v-model to input
-      and set it to "tempSkill". This will contain the
-      value the user types in and I´m going to add it
-      to an array with all the values the user typed. -->
       <label>Skills (press alt + comma to add):</label>
-      <!-- 4) Add keyup event and set it to the funcion addSkill -->
-      <!-- 10) Add event modifier alt to the keyup event so that
-      the comma the user types does not appear in the screen
-      and does not go to our array. IMPORTANT: the alt modifier
-      is not working. I don´t know if it´s because mac keyboard
-      or due to event modifiers with keyup in vue -->
       <input type="text" v-model="tempSkill" @keyup.alt="addSkill" />
-      <!-- 9) Output all the skills the user entered. Use the skill
-      itself as a key for the list.  -->
       <div v-for="skill in skills" :key="skill" class="pill">
         <span>{{ skill }}</span>
       </div>
@@ -50,28 +36,16 @@ export default {
       password: "",
       role: "designer",
       terms: false,
-      // 2) Add the variable to data
       tempSkill: "",
-      // 3) Store all the skillls the user enters inside array
       skills: [],
     };
   },
   methods: {
-    /* 5)Create addSkill function and take in the event
-object into the funcion. This event we get automatically
-when an even fires  */
     addSkill($event) {
-      /* 6)Listen to that event on if user types comma
-      and if tempSkill has a value */
       if ($event.key === "," && this.tempSkill) {
-        /* 7) Take the value in tempSkill and add it
-        to the skills array only if it´s not already
-        in the array. This prevents the user entering
-        the same data twice*/
         if (!this.skills.includes(this.tempSkill)) {
           this.skills.push(this.tempSkill);
         }
-        /* 8) Clear thetempSkill variable */
         this.tempSkill = "";
       }
     },
