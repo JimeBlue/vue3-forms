@@ -4,8 +4,6 @@
 
   <div>
     <form>
-      <!-- EXPLANATION: when the user clicks on an skill, it should be
-      deleted -->
       <label>Email:</label>
       <input type="email" v-model="email" required />
       <label>Password:</label>
@@ -16,14 +14,8 @@
         <option value="designer">Web Designer</option>
       </select>
       <label>Skills (press alt + comma to add):</label>
-      <!-- IMPORTANT: because the keboard event modifier "alt"
-      doens´t work, I remove it. That modifier is important,
-      check it out way in prvious branch. -->
       <input type="text" v-model="tempSkill" @keyup="addSkill" />
       <div v-for="skill in skills" :key="skill" class="pill">
-        <!-- 1) Add on click event calling the function deleteSkill,
-        passing the skill as an argument. Remember, that as we
-        used the v-for loop, skill is the current skill.-->
         <span @click="deleteSkill(skill)">{{ skill }}</span>
       </div>
       <div class="terms">
@@ -57,20 +49,8 @@ export default {
         this.tempSkill = "";
       }
     },
-    /* 2) Create the deleteSkill functiona and accept skill
-    as parameter.  */
     deleteSkill(skill) {
-      /* 3) Update the skills array to an array without the value
-      we want to delete. To do that, assign the skills array to the 
-      filter method. The filter method cycle through an array and
-      fires a function for each item in the array. If we return true
-      for an item in the array, we keep it in the array. If we return
-      false, we remove it from the array. */
       this.skills = this.skills.filter((item) => {
-        /* 4) I have to return false so that I can remove the clicked 
-        skill from the array. In other words, if the item equals the skill, 
-        I want to return false. So, I say, return skill is not equal to
-        item (return skill !== item;) */
         return skill !== item;
       });
     },
