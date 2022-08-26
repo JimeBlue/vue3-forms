@@ -3,17 +3,11 @@
   <!-- (https://github.com/iamshaunjp/Vue-3-Firebase/blob/lesson-44/web-forms/src/App.vue) -->
 
   <div>
-    <!-- 1) Add submit event to the form and set it
-    to the function handleSubmit. Add the .prevent
-    modifier to preven default-->
     <form @submit.prevent="handleSubmit">
       <label>Email:</label>
       <input type="email" v-model="email" required />
       <label>Password:</label>
       <input type="password" v-model="password" required />
-      <!-- 5) Ouput the password error. Add v-if directive to only
-      output it if passwordError has a value. If passwordError is
-      an empty string, it won´t be output it.-->
       <div v-if="passwordError" class="error">{{ passwordError }}</div>
       <label>Role:</label>
       <select v-model="role">
@@ -48,7 +42,6 @@ export default {
       terms: false,
       tempSkill: "",
       skills: [],
-      /* 4) Create passwordError */
       passwordError: "",
     };
   },
@@ -66,24 +59,12 @@ export default {
         return skill !== item;
       });
     },
-    /* 2) Create handleSubmit function */
     handleSubmit() {
-      /* 3) Validate password lenght to be over 5 characters.
-      I use the ternary operator for that. So, I say, if
-      password is greater than five, then passwordError is
-      equal to empty string. Else, passwordError is
-      equal to  "Password must be at least 6 characters long"*/
       this.passwordError =
         this.password.length > 5
           ? ""
           : "Password must be at least 6 characters long";
-
-      /* 6) If there´s no error in the password, show
-      in the console the data entered. IMPORTANT: in a real
-      case, here is where we sent the data to the database,
-      if there´s no error in the form */
       if (!this.passwordError) {
-        // make request to database to save user
         console.log("email: ", this.email);
         console.log("password: ", this.password);
         console.log("role: ", this.role);
